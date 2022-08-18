@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import { makeStyles } from "@mui/styles";
-import InfoIcon from "@mui/icons-material/Info";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -9,7 +9,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import IcecreamIcon from "@mui/icons-material/Icecream";
+import IcecreamOutlinedIcon from "@mui/icons-material/IcecreamOutlined";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -54,15 +54,16 @@ export default function Item({
       <CardActionArea>
         <CardContent>
           <Grid container justifyContent="center">
-            <IcecreamIcon fontSize="large" />
+            {/* Changing color with dot notation was not as simple as I thought..*/}
+            <IcecreamOutlinedIcon fontSize="large" color={item.color.primary} />
           </Grid>
         </CardContent>
-        <CardContent>Flavor: {item.title}</CardContent>
+        <CardContent>Flavor: {item.name}</CardContent>
         <CardContent>Description: {item.description}</CardContent>
         <CardContent>
-          Contains: Allergens*
+          Contains:
           <IconButton onClick={handleOpen}>
-            <InfoIcon />
+            <InfoOutlinedIcon color="secondary" />
           </IconButton>
           <Modal
             open={open}
@@ -75,12 +76,13 @@ export default function Item({
                 Allergens:
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Nuts, eggs, soy
+                {item.allergens}
               </Typography>
             </Box>
           </Modal>
         </CardContent>
       </CardActionArea>
+      {/* Buttons below are relatively disabled due to having a hard time providing individual state to each Modal */}
       <CardActions>
         <Button variant="outlined">Choose toppings</Button>
         <Button variant="outlined">Choose sauce</Button>
@@ -95,7 +97,7 @@ export default function Item({
           <Button
             size="medium"
             color="primary"
-            onClick={() => handleRemoveItemFromCart(item.id)}
+            onClick={() => handleRemoveItemFromCart(item.name)}
           >
             <RemoveCircleOutlineIcon />
           </Button>

@@ -7,6 +7,7 @@ import InputMask from "react-input-mask";
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
+import { states } from "../assets/states";
 
 const currencies = [
   {
@@ -61,10 +62,10 @@ const OrderForm = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <TextField
-                id="standard-read-only-input"
+                id="standard-required"
                 label="Card Number"
                 name="cardNumber"
-                defaultValue="####-####-####-####"
+                defaultValue="4444-4444-4444-4444"
                 inputProps={{ maxLength: 19, type: "number" }}
                 variant="standard"
                 sx={{ p: 1 }}
@@ -79,7 +80,7 @@ const OrderForm = () => {
                 sx={{ p: 1 }}
               />
               <TextField
-                id="standard-read-only-input"
+                id="standard-required"
                 label="CVC"
                 defaultValue="###"
                 name="cvc"
@@ -90,7 +91,7 @@ const OrderForm = () => {
             </div>
             <div>
               <TextField
-                id="standard-read-only-input"
+                id="standard-required"
                 label="Cardholder Name"
                 type="text"
                 defaultValue="John Doe"
@@ -102,7 +103,7 @@ const OrderForm = () => {
             </div>
             <div>
               <TextField
-                id="standard-read-only-input"
+                id="standard-required"
                 label="Billing Address"
                 name="address"
                 defaultValue="Enter your street address"
@@ -124,14 +125,13 @@ const OrderForm = () => {
                 id="standard-select-currency"
                 select
                 label="State"
-                value={states}
                 onChange={handleChange}
                 placeholder="Select a state"
                 variant="standard"
                 sx={{ p: 1 }}
               >
                 {currencies.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
+                  <MenuItem key={option} value={option.value}>
                     {option.label}
                   </MenuItem>
                 ))}

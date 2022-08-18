@@ -5,9 +5,9 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
     <aside sx={{ ml: 1 }}>
       <div className="itemCart">
         <div>
-          <h3>{item.title}</h3>
+          <h3>{item.name}</h3>
           <div className="itemInfo">
-            <p>Price: ${item.price.toFixed(2)}</p>
+            <p>Price: ${item.price.value}</p>
           </div>
           <div className="buttons">
             <Button
@@ -20,7 +20,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
             </Button>
             <p> {item.amount} </p>
             <Button
-              onClick={() => handleRemoveItemFromCart(item.id)}
+              onClick={() => handleRemoveItemFromCart(item.name)}
               size="small"
               disableElevation
               variant="contained"

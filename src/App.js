@@ -11,10 +11,13 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import "./custom.css";
 import OrderForm from "./components/OrderForm";
-import IcecreamIcon from "@mui/icons-material/Icecream";
+import { getFlavors } from "./api";
 
-const getProducts = async () =>
-  await (await fetch("https://fakestoreapi.com/products/")).json();
+// Limited fetch to just the /flavors endpoint due to inexpereince working with multiple endpoints
+// Additionally, due to limited functionality on the app compared to the expectd prototype, it was not necessary to pull that data in
+// I planned to use Context, but it was a bit confusing for the same reasons mentioned above/lack of experience working with full order + checkout flow
+
+const getProducts = async () => await getFlavors();
 
 const App = () => {
   const { isLoading, error, data } = useQuery("products", getProducts);
@@ -28,26 +31,26 @@ const App = () => {
   const handleAddItemToCart = (item) => {
     setCartItems((prev) => {
       // Search the item in the array
-      const isItemInTheCart = prev.find((i) => i.id === item.id);
+      const isItemInTheCart = prev.find((i) => i.name === item.name);
       if (isItemInTheCart) {
         return prev.map((i) =>
-          i.id === item.id ? { ...i, amount: i.amount + 1 } : i
+          i.name === item.name ? { ...i, amount: i.amount + 1 } : i
         );
       }
       return [...prev, { ...item, amount: 1 }];
     });
   };
 
-  const handleRemoveItemFromCart = (id) => {
+  const handleRemoveItemFromCart = (name) => {
     setCartItems((prev) => {
-      const foundItem = prev.find((i) => i.id === id);
+      const foundItem = prev.find((i) => i.name === name);
       if (foundItem) {
         if (foundItem.amount === 1) {
-          const newArray = prev.filter((i) => i.id !== id);
+          const newArray = prev.filter((i) => i.name !== name);
           return newArray;
         } else {
           return prev.map((i) =>
-            i.id === id ? { ...i, amount: i.amount - 1 } : i
+            i.name === name ? { ...i, amount: i.amount - 1 } : i
           );
         }
       } else {
@@ -99,14 +102,14 @@ const App = () => {
               if (query === "") {
                 return item;
               } else if (
-                item.title.toLowerCase().includes(query.toLowerCase())
+                item.name.toLowerCase().includes(query.toLowerCase())
               ) {
                 return item;
               }
             })
             .map((item) => {
               return (
-                <Grid key={item.id} item xs={12} sm={4}>
+                <Grid key={item.name} item xs={12} sm={4}>
                   <Item
                     item={item}
                     handleAddItemToCart={handleAddItemToCart}
