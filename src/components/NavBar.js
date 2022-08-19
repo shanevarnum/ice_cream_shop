@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { makeStyles } from "@mui/styles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Icecream } from "@mui/icons-material";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
   grow: {
@@ -17,11 +18,12 @@ const useStyles = makeStyles(() => ({
 export default function NavBar({ getTotalItems, setCartOpen }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [mobileAnchorEl, setMobileAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMobileMenuOpen = Boolean(mobileAnchorEl);
+
   const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
+    setMobileAnchorEl(null);
   };
 
   const handleMenuClose = () => {
@@ -29,7 +31,7 @@ export default function NavBar({ getTotalItems, setCartOpen }) {
     handleMobileMenuClose();
   };
 
-  const menuId = "primary-search-account-menu";
+  const menuId = "primary-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -41,10 +43,10 @@ export default function NavBar({ getTotalItems, setCartOpen }) {
       onClose={handleMenuClose}
     ></Menu>
   );
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  const mobileMenuId = "primary-menu-mobile";
   const renderMobileMenu = (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
+      anchorEl={mobileAnchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
@@ -54,23 +56,23 @@ export default function NavBar({ getTotalItems, setCartOpen }) {
     ></Menu>
   );
   return (
-    <div className={classes.grow}>
+    <Box className={classes.grow}>
       <AppBar position="sticky">
         <Toolbar>
           <Icecream />
           <b>Ice Cream Test</b>
-          <div className={classes.grow} />
-          <div onClick={() => setCartOpen(true)}>
+          <Box className={classes.grow} />
+          <Box onClick={() => setCartOpen(true)}>
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={getTotalItems} color="secondary">
                 <AddShoppingCartIcon />
               </Badge>
             </IconButton>
-          </div>
+          </Box>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-    </div>
+    </Box>
   );
 }

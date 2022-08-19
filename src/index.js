@@ -1,10 +1,10 @@
-import { ThemeProvider } from "@mui/material";
 import React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
 import Confirmation from "./components/Confirmation";
-import { QueryClient, QueryClientProvider } from "react-query";
+import App from "./App";
+import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
 
 const client = new QueryClient();

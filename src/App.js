@@ -13,8 +13,8 @@ import { getFlavors } from "./api";
 import "./custom.css";
 
 // Limited fetch to just the /flavors endpoint due to inexpereince working with multiple endpoints
-// Additionally, due to limited functionality on the app compared to the expectd prototype, it was not necessary to pull that data in
-// I planned to use Context, but it was a bit confusing for the same reasons mentioned above/lack of experience working with full order + checkout flow
+// Additionally, due to limited functionality on the app compared to the expected prototype, it didn't seem wise to pull that data in
+// I planned to use Context and reducers for the different APIs, but it was a bit confusing for the same reasons mentioned above/lack of experience working with full order + checkout flow
 
 const getProducts = async () => await getFlavors();
 
