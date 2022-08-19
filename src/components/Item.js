@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import { makeStyles } from "@mui/styles";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import IcecreamOutlinedIcon from "@mui/icons-material/IcecreamOutlined";
@@ -15,11 +14,11 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
+// import Radio from "@mui/material/Radio";
+// import RadioGroup from "@mui/material/RadioGroup";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import FormControl from "@mui/material/FormControl";
+// import FormLabel from "@mui/material/FormLabel";
 
 const useStyles = makeStyles({
   root: {
@@ -49,19 +48,25 @@ export default function Item({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const ingredientsList = item.ingredients.join(", ");
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardContent>
           <Grid container justifyContent="center">
             {/* Changing color with dot notation was not as simple as I thought..*/}
-            <IcecreamOutlinedIcon fontSize="large" color={item.color.primary} />
+            <IcecreamOutlinedIcon
+              fontSize="large"
+              color="secondary"
+              background="primary"
+            />
           </Grid>
         </CardContent>
         <CardContent>Flavor: {item.name}</CardContent>
         <CardContent>Description: {item.description}</CardContent>
         <CardContent>
-          Contains:
+          Contains: Dairy
           <IconButton onClick={handleOpen}>
             <InfoOutlinedIcon color="secondary" />
           </IconButton>
@@ -73,10 +78,10 @@ export default function Item({
           >
             <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Allergens:
+                Ingredients:
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                {item.allergens}
+                {ingredientsList}
               </Typography>
             </Box>
           </Modal>

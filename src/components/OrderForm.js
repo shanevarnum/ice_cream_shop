@@ -7,38 +7,19 @@ import InputMask from "react-input-mask";
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
-import { states } from "../assets/states";
-
-const currencies = [
-  {
-    value: "USD",
-    label: "$",
-  },
-  {
-    value: "EUR",
-    label: "€",
-  },
-  {
-    value: "BTC",
-    label: "฿",
-  },
-  {
-    value: "JPY",
-    label: "¥",
-  },
-];
+import states from "../assets/states.js";
 
 const OrderForm = () => {
   const { handleSubmit, control } = useForm();
   const [data, setData] = useState(null);
-  const [states, setStates] = useState("");
+  const [statess, setStatess] = useState("");
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
   const handleChange = (event) => {
-    setStates(event.target.value);
+    setStatess(event.target.value);
   };
 
   return (
@@ -59,6 +40,9 @@ const OrderForm = () => {
           noValidate
           autoComplete="off"
         >
+          {/* Dug into using using react-hook-form wuth MUI but had some trouble getting everything working. I could not get controller and register conditions to work 
+              Unfortunately, the same goes for Input Mask. The use of it was causing all sorts of errors for me.
+          */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <TextField
@@ -130,9 +114,9 @@ const OrderForm = () => {
                 variant="standard"
                 sx={{ p: 1 }}
               >
-                {currencies.map((option) => (
-                  <MenuItem key={option} value={option.value}>
-                    {option.label}
+                {states.map((option, index) => (
+                  <MenuItem key={index} value={`${option}`}>
+                    {option}
                   </MenuItem>
                 ))}
               </TextField>

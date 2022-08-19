@@ -13,10 +13,10 @@ const CartList = ({
     0
   );
   return (
-    <aside>
+    <Box justifyContent={"center"} sx={{ p: 5 }}>
       <h1>Flavors</h1>
       {cartItems.length === 0 ? <h3>No products yet...</h3> : null}
-      <div>
+      <Box>
         {cartItems.map((i) => (
           <CartItem
             item={i}
@@ -24,10 +24,10 @@ const CartList = ({
             handleRemoveItemFromCart={handleRemoveItemFromCart}
           />
         ))}
-      </div>
+      </Box>
       <h2>Total: ${calculeTotal.toFixed(2)}</h2>
       <Box sx={{ border: 1, width: "100%" }}></Box>
-    </aside>
+    </Box>
   );
 };
 export default CartList;

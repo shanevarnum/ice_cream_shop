@@ -1,4 +1,5 @@
 import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
   return (
@@ -9,7 +10,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
           <div className="itemInfo">
             <p>Price: ${item.price.value}</p>
           </div>
-          <div className="buttons">
+          <Stack direction="row" className="buttons" gap={5}>
             <Button
               size="small"
               disableElevation
@@ -27,7 +28,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
             >
               -
             </Button>
-          </div>
+          </Stack>
         </div>
       </div>
     </aside>
