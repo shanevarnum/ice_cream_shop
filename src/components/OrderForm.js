@@ -1,25 +1,19 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
+//import InputMask from "react-input-mask";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import InputMask from "react-input-mask";
-import { useForm, Controller } from "react-hook-form";
-import { Link } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
 import states from "../assets/states.js";
 
 const OrderForm = () => {
   const { handleSubmit, control } = useForm();
-  const [data, setData] = useState(null);
-  const [statess, setStatess] = useState("");
 
   const onSubmit = (data) => {
     console.log(data);
-  };
-
-  const handleChange = (event) => {
-    setStatess(event.target.value);
   };
 
   return (
@@ -44,7 +38,7 @@ const OrderForm = () => {
               Unfortunately, the same goes for Input Mask. The use of it was causing all sorts of errors for me.
           */}
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
+            <Box>
               <TextField
                 id="standard-required"
                 label="Card Number"
@@ -54,10 +48,11 @@ const OrderForm = () => {
                 variant="standard"
                 sx={{ p: 1 }}
               />
+              {/* Not entirely sure why input props are only taking affect for some of these text fields... */}
               <TextField
                 id="standard-read-only-input"
                 label="Expiration"
-                name="dob"
+                name="exp"
                 defaultValue="MM/YY"
                 inputProps={{ maxLength: 5 }}
                 variant="standard"
@@ -65,15 +60,15 @@ const OrderForm = () => {
               />
               <TextField
                 id="standard-required"
-                label="CVC"
+                label="CVV"
                 defaultValue="###"
-                name="cvc"
+                name="cvv"
                 inputProps={{ maxLength: 3, type: "number" }}
                 variant="standard"
                 sx={{ p: 1 }}
               />
-            </div>
-            <div>
+            </Box>
+            <Box>
               <TextField
                 id="standard-required"
                 label="Cardholder Name"
@@ -84,8 +79,8 @@ const OrderForm = () => {
                 inputProps={{ type: "text" }}
                 sx={{ p: 1 }}
               />
-            </div>
-            <div>
+            </Box>
+            <Box>
               <TextField
                 id="standard-required"
                 label="Billing Address"
@@ -94,8 +89,8 @@ const OrderForm = () => {
                 variant="standard"
                 sx={{ p: 1 }}
               />
-            </div>
-            <div sx={{ p: 1 }}>
+            </Box>
+            <Box>
               <TextField
                 id="standard-required"
                 label="City"
@@ -109,7 +104,6 @@ const OrderForm = () => {
                 id="standard-select-currency"
                 select
                 label="State"
-                onChange={handleChange}
                 placeholder="Select a state"
                 variant="standard"
                 sx={{ p: 1 }}
@@ -129,9 +123,9 @@ const OrderForm = () => {
                 inputProps={{ maxLength: 5, type: "number" }}
                 sx={{ p: 1 }}
               />
-            </div>
+            </Box>
           </form>
-          <Grid container justify="center" sx={{ pt: 8 }}>
+          <Grid container justifyContent={"center"} sx={{ pt: 8 }}>
             <Link to="/confirmation">
               <Button type="submit" variant="outlined">
                 Buy Ice Cream

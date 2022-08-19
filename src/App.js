@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-//Components
 import Item from "./components/Item";
 import CartList from "./components/CartList";
 import NavBar from "./components/NavBar";
@@ -9,9 +8,9 @@ import LinearProgress from "@mui/material/LinearProgress";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import "./custom.css";
 import OrderForm from "./components/OrderForm";
 import { getFlavors } from "./api";
+import "./custom.css";
 
 // Limited fetch to just the /flavors endpoint due to inexpereince working with multiple endpoints
 // Additionally, due to limited functionality on the app compared to the expectd prototype, it was not necessary to pull that data in
@@ -67,7 +66,7 @@ const App = () => {
         getTotalItems={getTotalItems(cartItems)}
         setCartOpen={setCartOpen}
       ></NavBar>
-      <div className="main">
+      <Box className="main">
         <Drawer
           anchor="right"
           open={cartOpen}
@@ -120,7 +119,7 @@ const App = () => {
               );
             })}
         </Grid>
-      </div>
+      </Box>
     </>
   );
 };

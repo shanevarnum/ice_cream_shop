@@ -1,36 +1,42 @@
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
 const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
   return (
     <aside sx={{ ml: 1 }}>
-      <div className="itemCart">
-        <div>
-          <h3>{item.name}</h3>
-          <div className="itemInfo">
-            <p>Price: ${item.price.value}</p>
-          </div>
-          <Stack direction="row" className="buttons" gap={5}>
+      <Box className="itemCart">
+        <Box>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            <h3>{item.name}</h3>
+          </Typography>
+          <Box className="itemInfo">
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              <p>Price: ${item.price.value}</p>
+            </Typography>
+          </Box>
+          <Stack direction="row" className="buttons" gap={3}>
             <Button
-              size="small"
-              disableElevation
-              variant="contained"
               onClick={() => handleAddItemToCart(item)}
+              size="medium"
+              color="primary"
             >
-              +
+              <AddCircleOutlineIcon />
             </Button>
             <p> {item.amount} </p>
             <Button
               onClick={() => handleRemoveItemFromCart(item.name)}
-              size="small"
-              disableElevation
-              variant="contained"
+              size="medium"
+              color="primary"
             >
-              -
+              <RemoveCircleOutlineIcon />
             </Button>
           </Stack>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </aside>
   );
 };

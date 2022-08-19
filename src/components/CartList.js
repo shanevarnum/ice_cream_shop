@@ -1,7 +1,6 @@
 import CartItem from "./CartItem";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
 const CartList = ({
   cartItems,
@@ -14,8 +13,14 @@ const CartList = ({
   );
   return (
     <Box justifyContent={"center"} sx={{ p: 5 }}>
-      <h1>Flavors</h1>
-      {cartItems.length === 0 ? <h3>No products yet...</h3> : null}
+      <Typography id="flavors" variant="h6" component="h2">
+        <h1>Flavors</h1>
+      </Typography>
+      {cartItems.length === 0 ? (
+        <Typography id="empty-product" variant="h6" component="h2">
+          <h3>No products yet...</h3>
+        </Typography>
+      ) : null}
       <Box>
         {cartItems.map((i) => (
           <CartItem
@@ -25,9 +30,12 @@ const CartList = ({
           />
         ))}
       </Box>
-      <h2>Total: ${calculeTotal.toFixed(2)}</h2>
+      <Typography id="total" variant="h6" component="h2">
+        <h2>Total: ${calculeTotal.toFixed(2)}</h2>
+      </Typography>
       <Box sx={{ border: 1, width: "100%" }}></Box>
     </Box>
   );
 };
+
 export default CartList;

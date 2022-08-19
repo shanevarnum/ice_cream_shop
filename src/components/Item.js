@@ -1,24 +1,26 @@
 import React, { useState } from "react";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 import Card from "@mui/material/Card";
-import { makeStyles } from "@mui/styles";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
+import { makeStyles } from "@mui/styles";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import IcecreamOutlinedIcon from "@mui/icons-material/IcecreamOutlined";
 import IconButton from "@mui/material/IconButton";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
 // import Radio from "@mui/material/Radio";
 // import RadioGroup from "@mui/material/RadioGroup";
 // import FormControlLabel from "@mui/material/FormControlLabel";
 // import FormControl from "@mui/material/FormControl";
 // import FormLabel from "@mui/material/FormLabel";
+
+// ^^^ Commented out the above because it didn't seem wise to make the flavor and sauce modals still if I wasn't pulling their respective API data
 
 const useStyles = makeStyles({
   root: {
@@ -55,7 +57,7 @@ export default function Item({
       <CardActionArea>
         <CardContent>
           <Grid container justifyContent="center">
-            {/* Changing color with dot notation was not as simple as I thought..*/}
+            {/* Changing color with dot notation was not as simple as I thought..I'm honestly not sure how to use the hex value from the JSON data.*/}
             <IcecreamOutlinedIcon
               fontSize="large"
               color="secondary"
@@ -63,10 +65,21 @@ export default function Item({
             />
           </Grid>
         </CardContent>
-        <CardContent>Flavor: {item.name}</CardContent>
-        <CardContent>Description: {item.description}</CardContent>
         <CardContent>
-          Contains: Dairy
+          <Typography id="modal-modal-title" variant="body1" component="h2">
+            Flavor: {item.name}
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography id="modal-modal-title" variant="body1" component="h2">
+            Description: {item.description}
+          </Typography>
+        </CardContent>
+        {/* Hardcoded the "Contains" piece because I was unsure how to strip out only a few words. Maybe a tricky find-based function would work here */}
+        <CardContent>
+          <Typography id="modal-modal-title" variant="subtitle1" component="h2">
+            Contains: Dairy
+          </Typography>
           <IconButton onClick={handleOpen}>
             <InfoOutlinedIcon color="secondary" />
           </IconButton>

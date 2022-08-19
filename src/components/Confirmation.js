@@ -1,13 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { Box, Stack } from "@mui/material";
-import Icecream from "@mui/icons-material/Icecream";
 import NavBar from "./NavBar";
-import { Link } from "react-router-dom";
+import Icecream from "@mui/icons-material/Icecream";
 
 const Confirmation = () => {
   return (
-    <div justifyContent="center">
+    <Box justifyContent="center">
       <NavBar />
       <Stack sx={{ marginTop: "50px" }}></Stack>
       <Box
@@ -26,7 +26,7 @@ const Confirmation = () => {
           </Link>
         </Stack>
       </Box>
-    </div>
+    </Box>
   );
 };
 
